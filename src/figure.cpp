@@ -2,6 +2,19 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+
+int doublecompare(double x, double y) {
+	if (fabs(x - y) < 1e-7) {
+		return 0;
+	}
+	else if (x - y > 1e-7) {
+		return 1;
+	}
+	else {
+		return -1;
+	}
+}
+
 bool Line::operator <(const Line& d) {
 	return k < d.k;
 }
@@ -17,10 +30,10 @@ std::vector<Point> Cycle::intersectWithLine(Line t) {
 	std::vector<Point>ps;
 	double ld = abs(t.a * x + t.b * y + t.c) / sqrt(t.a * t.a + t.b * t.b);
 	//cout << ld << endl;
-	if (ld - r > 1e-6) {
+	if (doublecompare(ld, r) == 1) {
 		return ps;
 	}
-	else if (abs(ld - r) < 1e-6) {
+	else if (doublecompare(ld, r) == 0) {
 		if (t.k == inf_k) {
 			ps.push_back(Point(t.x1, y));
 			return ps;

@@ -10,14 +10,14 @@ Line l[10000];
 Cycle c[10000];
 map<Point, int>vis;
 int N, ln, cn;
-double eps = 1e-6;
+double eps = 1e-7;
 int solveLine() {
 	int ans = 0;
 	sort(l, l + ln);
 	map<Point, int>::iterator iter;
 	for (int i = 0; i < ln; i++) {
 		for (int j = 0; j < i; j++) {
-			if (fabs(l[i].k - l[j].k) < eps) {
+			if (doublecompare(l[i].k, l[j].k) == 0) {
 				break;
 			}
 			Point tpoint = l[i].intersectWithLine(l[j]);
@@ -84,12 +84,12 @@ int main(int argc, char** argv) {
 		fin >> op;
 		switch (op) {
 		case 'L':
-			int x1, y1, x2, y2;
+			double x1, y1, x2, y2;
 			fin >> x1 >> y1 >> x2 >> y2;
 			l[ln++] = Line(x1, y1, x2, y2);
 			break;
 		case 'C':
-			int x, y, r;
+			double x, y, r;
 			fin >> x >> y >> r;
 			c[cn++] = Cycle(x, y, r);
 			break;

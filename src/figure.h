@@ -3,6 +3,8 @@
 #include<vector>
 #define inf_k 2000000
 
+int doublecompare(double x, double y);
+
 class Point {
 public:
 	double x;
@@ -14,14 +16,14 @@ public:
 		next = 0;
 	}
 	bool operator <(const Point& d) const {
-		if (fabs(x - d.x) < 1e-6) {
+		if (doublecompare(x, d.x) == 0) {
 			return y < d.y;
 		}
 		return x < d.x;
 	}
 
 	bool operator ==(const Point& d) const {
-		if (fabs(x - d.x) < 1e-6 && fabs(y - d.y) < 1e-6) {
+		if (doublecompare(x, d.x) == 0 && doublecompare(y, d.y) == 0) {
 			return true;
 		}
 		return false;
@@ -55,12 +57,12 @@ public:
 		}
 
 	}
-	Line(int x11, int y11, int x21, int y21) {
+	Line(double x11, double y11, double x21, double y21) {
 		x1 = x11;
 		y1 = y11;
-		a = (double)y21 - y11;
-		b = (double)x11 - x21;
-		c = (double)x21 * y11 - (double)x11 * y21;
+		a = y21 - y11;
+		b = x11 - x21;
+		c = x21 * y11 - x11 * y21;
 
 		if (b == 0) {
 			k = inf_k;
