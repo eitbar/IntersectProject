@@ -1,6 +1,7 @@
 ﻿#include "figure.h"
+#include<iostream>
 #include<vector>
-
+using namespace std;
 bool Line::operator <(const Line& d) {
 	return k < d.k;
 }
@@ -15,6 +16,7 @@ Point Line::intersectWithLine(Line d) {
 std::vector<Point> Cycle::intersectWithLine(Line t) {
 	std::vector<Point>ps;
 	double ld = abs(t.a * x + t.b * y + t.c) / sqrt(t.a * t.a + t.b * t.b);
+	//cout << ld << endl;
 	if (ld - r > 1e-6) {
 		return ps;
 	}
@@ -28,8 +30,9 @@ std::vector<Point> Cycle::intersectWithLine(Line t) {
 			return ps;
 		}
 		double b2 = x / t.k + y;
-		double xt = t.k * (b2 - t.b) / (1 + t.k * t.k);
-		double yt = t.k * xt + t.b;
+		double b1 = -t.c / t.b;
+		double xt = t.k * (b2 - b1) / (1 + t.k * t.k);
+		double yt = t.k * xt + b1;
 		ps.push_back(Point(xt, yt));
 		return ps;
 	}
@@ -45,8 +48,9 @@ std::vector<Point> Cycle::intersectWithLine(Line t) {
 		return ps;
 	}
 	double b2 = x / t.k + y;
-	double xt = t.k * (b2 - t.b) / (1 + t.k * t.k);
-	double yt = t.k * xt + t.b;
+	double b1 = -t.c / t.b;
+	double xt = t.k * (b2 - b1) / (1 + t.k * t.k);
+	double yt = t.k * xt + b1;
 	double s1k2 = sqrt(1 + t.k * t.k);
 	double nx = 1 / s1k2;
 	double ny = t.k / s1k2;
@@ -56,6 +60,6 @@ std::vector<Point> Cycle::intersectWithLine(Line t) {
 }
 
 std::vector<Point> Cycle::intersectWithCycle(Cycle t) {
-	Line newl = Line(d - t.d, e - t.e, t.f - f);
+	Line newl = Line(d - t.d, e - t.e, f - t.f);
 	return intersectWithLine(newl);
 }

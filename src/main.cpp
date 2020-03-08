@@ -38,7 +38,6 @@ int solveCycle() {
 		for (int j = 0; j < ln; j++) {
 			vector<Point> tpoint = c[i].intersectWithLine(l[j]);
 			int nump = tpoint.size();
-			//cout << nump << endl;
 			for (int k = 0; k < nump; k++) {
 				iter = vis.find(tpoint[k]);
 				if (iter == vis.end()) {

@@ -88,7 +88,7 @@ public:
 		r = ar;
 		d = -2 * ax;
 		e = -2 * ay;
-		f = ax * ax + ay * ay - ar;
+		f = ax * ax + ay * ay - ar * ar;
 	}
 
 	std::vector<Point> intersectWithLine(Line t);
