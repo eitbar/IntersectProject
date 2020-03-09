@@ -1,8 +1,9 @@
 ﻿#pragma once
 #include<math.h>
+#include <unordered_map>
 #include<vector>
 #define inf_k 2000000
-
+using namespace std;
 int doublecompare(double x, double y);
 
 class Point {
@@ -27,6 +28,15 @@ public:
 			return true;
 		}
 		return false;
+	}
+};
+
+class PointHash
+{
+public:
+	std::size_t operator()(const Point& c) const
+	{
+		return hash<double>()(c.x) + (hash<double>()(c.y) << 16);
 	}
 };
 

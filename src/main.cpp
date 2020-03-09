@@ -2,6 +2,7 @@
 #include <fstream>
 #include <math.h>
 #include <map>
+#include <unordered_map>
 #include <set>
 #include <algorithm>
 #include <stdio.h>
@@ -9,13 +10,16 @@
 using namespace std;
 Line l[10000];
 Cycle c[10000];
-map<Point, int>vis;
+//map<Point, int>vis;
+typedef unordered_map<Point, int, PointHash> umap;
+umap vis;
 int N, ln, cn;
 double eps = 1e-7;
 int solveLine() {
 	int ans = 0;
 	sort(l, l + ln);
-	map<Point, int>::iterator iter;
+	//map<Point, int>::iterator iter;
+	umap::iterator iter;
 	for (int i = 0; i < ln; i++) {
 		for (int j = 0; j < i; j++) {
 			if (doublecompare(l[i].k, l[j].k) == 0) {
@@ -34,7 +38,8 @@ int solveLine() {
 
 int solveCycle() {
 	int ans = 0;
-	map<Point, int>::iterator iter;
+	//map<Point, int>::iterator iter;
+	umap::iterator iter;
 	for (int i = 0; i < cn; i++) {
 		for (int j = 0; j < ln; j++) {
 			vector<Point> tpoint = c[i].intersectWithLine(l[j]);
