@@ -10,7 +10,6 @@
 using namespace std;
 Line l[10000];
 Cycle c[10000];
-//map<Point, int>vis;
 typedef unordered_map<Point, int, PointHash> umap;
 umap vis;
 int N, ln, cn;
@@ -18,7 +17,6 @@ double eps = 1e-7;
 int solveLine() {
 	int ans = 0;
 	sort(l, l + ln);
-	//map<Point, int>::iterator iter;
 	umap::iterator iter;
 	for (int i = 0; i < ln; i++) {
 		for (int j = 0; j < i; j++) {
@@ -38,7 +36,6 @@ int solveLine() {
 
 int solveCycle() {
 	int ans = 0;
-	//map<Point, int>::iterator iter;
 	umap::iterator iter;
 	for (int i = 0; i < cn; i++) {
 		for (int j = 0; j < ln; j++) {

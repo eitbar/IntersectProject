@@ -32,7 +32,6 @@ Point Line::intersectWithLine(Line d) {
 std::vector<Point> Cycle::intersectWithLine(Line t) {
 	std::vector<Point>ps;
 	double ld = abs(t.a * x + t.b * y + t.c) / sqrt(t.a * t.a + t.b * t.b);
-	//cout << ld << endl;
 	if (doublecompare(ld, r) == 1) {
 		return ps;
 	}
