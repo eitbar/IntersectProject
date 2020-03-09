@@ -4,10 +4,10 @@
 using namespace std;
 
 int doublecompare(double x, double y) {
-	if (fabs(x - y) < 1e-7) {
+	if (fabs(x - y) < 1e-8) {
 		return 0;
 	}
-	else if (x - y > 1e-7) {
+	else if (x - y > 1e-8) {
 		return 1;
 	}
 	else {
@@ -21,6 +21,9 @@ bool Line::operator <(const Line& d) {
 
 Point Line::intersectWithLine(Line d) {
 	double fm = a * d.b - b * d.a;
+	if (fm == 0) {
+		return Point(inf_k, inf_k);
+	}
 	double x = (b * d.c - c * d.b) / fm;
 	double y = (d.a * c - a * d.c) / fm;
 	return Point(x, y);
@@ -73,6 +76,12 @@ std::vector<Point> Cycle::intersectWithLine(Line t) {
 }
 
 std::vector<Point> Cycle::intersectWithCycle(Cycle t) {
+	vector<Point> p;
+	double rd = sqrt((t.x - x) * (t.x - x) + (t.y - y) * (t.y - y));
+	double rr = r + t.r;
+	if (doublecompare(rd, rr) > 0 || doublecompare(rd + t.r, r) < 0) {
+		return p;
+	}
 	Line newl = Line(d - t.d, e - t.e, f - t.f);
 	return intersectWithLine(newl);
 }

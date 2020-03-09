@@ -4,6 +4,7 @@
 #include <map>
 #include <set>
 #include <algorithm>
+#include <stdio.h>
 #include "figure.h"
 using namespace std;
 Line l[10000];
