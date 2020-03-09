@@ -45,7 +45,7 @@ std::vector<Point> Cycle::intersectWithLine(Line t) {
 			return ps;
 		}
 		double b2 = x / t.k + y;
-		double b1 = -t.c / t.b;
+		double b1 = t.b1;
 		double xt = t.k * (b2 - b1) / (1 + t.k * t.k);
 		double yt = t.k * xt + b1;
 		ps.push_back(Point(xt, yt));
@@ -63,7 +63,7 @@ std::vector<Point> Cycle::intersectWithLine(Line t) {
 		return ps;
 	}
 	double b2 = x / t.k + y;
-	double b1 = -t.c / t.b;
+	double b1 = t.b1;
 	double xt = t.k * (b2 - b1) / (1 + t.k * t.k);
 	double yt = t.k * xt + b1;
 	double s1k2 = sqrt(1 + t.k * t.k);

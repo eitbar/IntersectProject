@@ -8,8 +8,9 @@
 #include <stdio.h>
 #include "figure.h"
 using namespace std;
-Line l[10000];
-Cycle c[10000];
+Line l[5000001];
+Cycle c[5000001];
+//typedef map<Point, int> umap;
 typedef unordered_map<Point, int, PointHash> umap;
 umap vis;
 int N, ln, cn;
